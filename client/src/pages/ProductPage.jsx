@@ -33,7 +33,8 @@ const ProductPage = () => {
         if (res.data.colors?.length) setSelectedColor(res.data.colors[0]);
         
         // Fetch related
-        const relatedRes = await productsAPI.getProductsByCategory(res.data.category);
+        const categoryId = typeof res.data.category === 'object' ? res.data.category._id : res.data.category;
+        const relatedRes = await productsAPI.getProductsByCategory(categoryId);
         setRelatedProducts(relatedRes.data.products?.filter(p => p._id !== res.data._id).slice(0, 4) || []);
       } catch (err) {
         console.warn('API failed, using mock data for product page');
@@ -151,7 +152,7 @@ const ProductPage = () => {
         <div className="product-info-section">
           <div className="product-info-header">
             <div style={{ color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.875rem', marginBottom: '0.5rem' }}>
-              {product.category}
+              {typeof product.category === 'object' ? product.category?.name : product.category}
             </div>
             <h1>{product.name}</h1>
             <div className="product-meta">

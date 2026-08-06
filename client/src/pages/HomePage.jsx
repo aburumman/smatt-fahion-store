@@ -59,7 +59,7 @@ const HomePage = () => {
       <section className="hero">
         <img 
           src="/images/hero/hero-banner.jpg" 
-          alt="SMATT Premium Collection" 
+          alt="Smatt Fashion Premium Collection" 
           className="hero-bg"
         />
         <div className="hero-overlay" />
@@ -178,7 +178,7 @@ const HomePage = () => {
       {/* Newsletter */}
       <section className="section-padding container animate-on-scroll">
         <div className="newsletter-section">
-          <h2>Join the SMATT List</h2>
+          <h2>Join the Smatt Fashion List</h2>
           <p>Subscribe to receive updates, access to exclusive deals, and 10% off your first order.</p>
           <form className="newsletter-form" onSubmit={(e) => e.preventDefault()} style={{ maxWidth: '500px', margin: '0 auto' }}>
             <input type="email" placeholder="Enter your email address" required style={{ padding: '1rem' }} />
