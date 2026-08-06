@@ -1,0 +1,73 @@
+name: Production CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-and-build:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Root Dependencies
+        run: npm ci
+
+      - name: Install Client Dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Lint Client
+        working-directory: ./client
+        run: npm run lint
+        continue-on-error: true # Don't fail the build for minor warnings
+
+      - name: Build Client
+        working-directory: ./client
+        run: npm run build
+        env:
+          CI: true
+
+  deploy-production:
+    name: Deploy to Netlify
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Client Dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build Client
+        working-directory: ./client
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=client/dist --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
