@@ -1,0 +1,21 @@
+# Render Blueprint for deploying the Express Backend and MongoDB
+# Create an account on render.com and connect your repository to deploy this blueprint.
+
+services:
+  # The Express Backend API
+  - type: web
+    name: smatt-fashion-api
+    env: node
+    buildCommand: "cd server && npm install"
+    startCommand: "cd server && npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        value: "mongodb://your_production_mongo_database_url_here"
+      - key: JWT_SECRET
+        value: "generate_a_very_secure_random_string_here"
+      - key: JWT_EXPIRE
+        value: 30d

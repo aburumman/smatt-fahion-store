@@ -18,11 +18,11 @@ const connectDB = async () => {
 };
 
 const categories = [
-  { name: 'Women\'s Fashion', description: 'Elegant dresses, tops, and stylish apparel for women.' },
-  { name: 'Men\'s Fashion', description: 'Sharp suits, casual wear, and premium menswear.' },
-  { name: 'Kids\' Fashion', description: 'Comfortable and stylish clothing for children.' },
-  { name: 'Jewelry', description: 'Elegant necklaces, rings, and premium jewelry pieces.' },
-  { name: 'Accessories', description: 'Premium bags, sunglasses, and timeless wristwatches.' }
+  { name: 'Women\'s Fashion', slug: 'womens-fashion', description: 'Elegant dresses, tops, and stylish apparel for women.' },
+  { name: 'Men\'s Fashion', slug: 'mens-fashion', description: 'Sharp suits, casual wear, and premium menswear.' },
+  { name: 'Kids\' Fashion', slug: 'kids-fashion', description: 'Comfortable and stylish clothing for children.' },
+  { name: 'Jewelry', slug: 'jewelry', description: 'Elegant necklaces, rings, and premium jewelry pieces.' },
+  { name: 'Accessories', slug: 'accessories', description: 'Premium bags, sunglasses, and timeless wristwatches.' }
 ];
 
 const seedData = async () => {
@@ -57,6 +57,7 @@ const seedData = async () => {
     for (let i = 1; i <= 6; i++) {
       products.push({
         name: `Elegant Dress ${i}`,
+        slug: `elegant-dress-${i}`,
         description: 'A timeless elegant dress for any occasion. Comfortable and stylish.',
         price: 89.99 + i * 10,
         compareAtPrice: 120.00 + i * 10,
@@ -76,6 +77,7 @@ const seedData = async () => {
     for (let i = 1; i <= 6; i++) {
       products.push({
         name: `Sharp Suit ${i}`,
+        slug: `sharp-suit-${i}`,
         description: 'Stay sharp with our premium tailored suit. Perfect for any formal event.',
         price: 159.99 + i * 15,
         compareAtPrice: 199.99 + i * 15,
@@ -95,6 +97,7 @@ const seedData = async () => {
     for (let i = 1; i <= 6; i++) {
       products.push({
         name: `Kids Outfit ${i}`,
+        slug: `kids-outfit-${i}`,
         description: 'Comfortable and stylish outfit for children. Made from premium cotton.',
         price: 39.99 + i * 5,
         images: [`/images/products/womens-elegant-dress-1.jpg`],
@@ -113,6 +116,7 @@ const seedData = async () => {
     for (let i = 1; i <= 6; i++) {
       products.push({
         name: `Luxury Necklace ${i}`,
+        slug: `luxury-necklace-${i}`,
         description: 'Elegant luxury necklace. A statement piece for any occasion.',
         price: 234.99 + i * 20,
         compareAtPrice: 345.00,
@@ -132,6 +136,7 @@ const seedData = async () => {
     for (let i = 1; i <= 6; i++) {
       products.push({
         name: `Premium Bag ${i}`,
+        slug: `premium-bag-${i}`,
         description: 'Premium leather bag. Elegant and functional design for everyday use.',
         price: 124.99,
         images: [`/images/products/accessories-timeless-watch-1.jpg`],
