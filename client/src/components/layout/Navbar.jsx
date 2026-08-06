@@ -45,7 +45,7 @@ const Navbar = () => {
           </button>
 
           <Link to="/" className="nav-logo">
-            SMAT<span>T</span>
+            Smatt <span>Fashion</span>
           </Link>
 
           <div className="nav-links">
@@ -123,7 +123,7 @@ const Navbar = () => {
           position: 'fixed', inset: 0, backgroundColor: 'var(--bg-card)', zIndex: 100, display: 'flex', flexDirection: 'column', padding: '2rem'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-            <Link to="/" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>SMAT<span>T</span></Link>
+            <Link to="/" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>Smatt <span>Fashion</span></Link>
             <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', fontSize: '1.5rem', color: 'var(--text-primary)' }}>
               <FiX />
             </button>

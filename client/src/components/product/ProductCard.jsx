@@ -35,7 +35,7 @@ const ProductCard = ({ product, isLoading }) => {
         </div>
         
         <div className="product-info">
-          <span className="product-category">{product.category}</span>
+          <span className="product-category">{typeof product.category === 'object' ? product.category?.name : product.category}</span>
           <Link to={`/product/${product.slug}`} className="product-name">
             {product.name}
           </Link>
